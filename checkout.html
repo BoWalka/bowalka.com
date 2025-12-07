@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Bowalka Cyberdecks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+
+  <div class="container">
+    <header style="margin-bottom: 20px;">
+      <h1>Secure Checkout</h1>
+      <p>Complete your order for premium cyberdecks. Fast & secure dropshipping.</p>
+    </header>
+
+    <div style="display: flex; gap: 40px; max-width: 1000px; width: 100%; justify-content: center;">
+      <!-- Order Summary -->
+      <div style="flex: 1; background: rgba(0,255,0,0.05); border: 1px solid #0f0; padding: 25px; border-radius: 10px;">
+        <h3>Order Summary</h3>
+        <div id="checkout-items"></div>
+        <div style="text-align: right; font-size: 1.5em; margin-top: 20px;">
+          <strong>Total: $<span id="checkout-total">0</span></strong>
+        </div>
+        <div style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+          �� Secure Payment | Worldwide Shipping | 30-Day Returns
+        </div>
+      </div>
+
+      <!-- Checkout Form -->
+      <form id="checkout-form" style="flex: 1; background: rgba(0,20,0,0.95); border: 2px solid #0f0; padding: 30px; border-radius: 10px;">
+        <h3>Shipping Details</h3>
+        <input type="text" placeholder="Full Name" required style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #0f0; background: #000; color: #0f0; border-radius: 5px;">
+        <input type="email" placeholder="Email" required style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #0f0; background: #000; color: #0f0; border-radius: 5px;">
+        <input type="text" placeholder="Address" required style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #0f0; background: #000; color: #0f0; border-radius: 5px;">
+        <input type="text" placeholder="City" required style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #0f0; background: #000; color: #0f0; border-radius: 5px;">
+        <input type="text" placeholder="ZIP Code" required style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #0f0; background: #000; color: #0f0; border-radius: 5px;">
+
+        <h3>Payment</h3>
+        <div style="background: #111; padding: 20px; border-radius: 10px; margin: 20px 0;">
+          <input type="text" placeholder="Card Number **** **** **** ****" maxlength="19" required style="width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #0f0; background: #000; color: #0f0; border-radius: 5px;">
+          <div style="display: flex; gap: 10px;">
+            <input type="text" placeholder="MM/YY" maxlength="5" required style="flex: 1; padding: 12px; border: 1px solid #0f0; background: #000; color: #0f0; border-radius: 5px;">
+            <input type="text" placeholder="CVV" maxlength="3" required style="width: 80px; padding: 12px; border: 1px solid #0f0; background: #000; color: #0f0; border-radius: 5px;">
+          </div>
+        </div>
+
+        <button type="submit" class="buy-btn" style="width: 100%; font-size: 1.3em; padding: 18px;">
+          Complete Order - Pay Now
+        </button>
+      </form>
+    </div>
+
+    <footer style="margin-top: 40px;">
+      <p>&copy; 2025 Bowalka. <a href="index.html">← Back to Shop</a></p>
+    </footer>
+  </div>
+
+  <script src="matrix.js"></script>
+  <script src="checkout.js"></script>
+</body>
+</html>
