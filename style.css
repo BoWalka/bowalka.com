@@ -236,3 +236,81 @@ body::after {
   to { opacity: 1; transform: translateY(0); }
 }
 .product { animation: fadeInUp 0.6s ease forwards; }
+/* Checkout Page Styles */
+.checkout-header {
+  margin-bottom: 20px;
+}
+
+.checkout-layout {
+  display: flex;
+  gap: 40px;
+  max-width: 1000px;
+  width: 100%;
+  justify-content: center;
+}
+
+.order-summary {
+  flex: 1;
+  background: rgba(0,255,0,0.05);
+  border: 1px solid #0f0;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.total-row {
+  text-align: right;
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+
+.checkout-note {
+  margin-top: 20px;
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.checkout-form {
+  flex: 1;
+  background: rgba(0,20,0,0.95);
+  border: 2px solid #0f0;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.checkout-input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #0f0;
+  background: #000;
+  color: #0f0;
+  border-radius: 5px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.payment-section {
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.exp-cvv {
+  display: flex;
+  gap: 10px;
+}
+
+.exp-cvv .checkout-input {
+  flex: 1;
+}
+
+.exp-cvv .checkout-input:last-child {
+  flex: none;
+  width: 80px;
+}
+
+.checkout-footer {
+  margin-top: 40px;
+}
