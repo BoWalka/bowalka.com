@@ -13,15 +13,16 @@
             color: #e0e0e0;
             line-height: 1.6;
             overflow-x: hidden;
+            background: #0a0a1f;
         }
 
-        /* MATRIX BACKGROUND - YOUR EXACT YEET VERSION */
+        /* MATRIX - fixed white wash */
         #matrix {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: -1;
-            opacity: 0.12;
+            opacity: 0.09;           /* lowered so it's not washed out */
             pointer-events: none;
         }
 
@@ -41,7 +42,7 @@
         }
 
         .repo-card {
-            background: rgba(20, 20, 43, 0.95);
+            background: rgba(10, 10, 25, 0.92);
             border: 3px solid #222244;
             border-radius: 18px;
             padding: 32px 28px;
@@ -49,12 +50,11 @@
             text-decoration: none;
             color: #ffffff !important;
             display: block;
-            backdrop-filter: blur(8px);
         }
         .repo-card:hover {
             border-color: var(--neon);
             transform: translateY(-8px);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
         }
         .repo-card h2 { font-size: 1.9rem; font-weight: 700; margin-bottom: 14px; color: #ffffff !important; }
         .repo-card p { color: #e0e0e0 !important; margin-bottom: 22px; min-height: 75px; }
@@ -86,7 +86,7 @@
 </head>
 <body>
 
-    <!-- YOUR MATRIX BACKGROUND -->
+    <!-- YOUR MATRIX -->
     <canvas id="matrix"></canvas>
 
     <div class="container">
@@ -133,7 +133,7 @@
     </div>
 
     <script>
-        // === YOUR EXACT MATRIX YEET BACKGROUND ===
+        // YOUR EXACT MATRIX YEET CODE
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
 
@@ -150,7 +150,7 @@
         const drops = Array(Math.floor(columns)).fill(1);
 
         function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.12)';   // darker fade = no white wash
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#0f0';
             ctx.font = fontSize + 'px monospace';
@@ -167,7 +167,7 @@
         }
         setInterval(draw, 50);
 
-        // === REPO LOADER ===
+        // Repo loader (unchanged)
         const GITHUB_API = 'https://api.github.com/users/BoWalka/repos?per_page=100&sort=updated';
 
         async function loadRepos() {
@@ -209,7 +209,6 @@
                 document.getElementById('demos-grid').innerHTML = demosHTML;
             } catch (err) {
                 console.error(err);
-                document.getElementById('repos-grid').innerHTML = '<p style="text-align:center;grid-column:1/-1;">Unable to load repositories right now.</p>';
             }
         }
 
