@@ -1,65 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>bowalkadesigns | Software Developer & Open-Source Engineer</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Beau Walker (BoWalka) - Software Developer & Open-Source Engineer. Android tooling, Python creative projects, cyberdecks, and more.">
+    <title>Beau Walker | Software Developer & Open-Source Engineer</title>
+    <style>
+        :root {
+            --neon: #00D4FF;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #0a0a1f;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 120px 20px 80px;
+            background: linear-gradient(180deg, #0a0a1f, #1a0033);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--neon);
+            margin: 10px 0 20px;
+        }
+        
+        section { padding: 80px 0; }
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        
+        /* Repo Cards - Uniform & Clean */
+        .repo-card {
+            background: #14142b;
+            border: 2px solid #222244;
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+        .repo-card:hover {
+            border-color: var(--neon);
+            transform: translateY(-6px);
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
+        }
+        .repo-card h2 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: white;
+        }
+        .repo-card p {
+            color: #e0e0e0;
+            margin-bottom: 20px;
+            min-height: 70px;
+        }
+        .repo-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+        .lang-badge {
+            background-color: #00D4FF;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        /* Buttons & Badges */
+        .demo-badge {
+            color: #00D4FF;
+            font-weight: 600;
+        }
+        
+        /* Tech Stack */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+        .skill {
+            background: #1f1f3d;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
-  <!-- Matrix raining emoji background -->
-  <canvas id="matrix"></canvas>
 
-  <div class="container">
-    <section class="hero">
-      <h1>bowalka</h1>
-      <p class="tagline">independent software developer. linux enthusiast. dad</p>
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container">
+            <h1>Beau Walker</h1>
+            <p>Software Developer &amp; Open-Source Engineer</p>
+            <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
+                Florida-based developer building Android tools, creative Python projects, custom cyberdecks, and open-source systems.
+            </p>
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.15rem;">
+                I'm a passionate software developer focused on low-level Android tooling, creative coding, and building hardware/software hybrids. 
+                I love open source and turning ideas into functional tools and art.
+            </p>
+        </div>
     </section>
 
-    <div class="social-buttons">
-      <a href="https://github.com/BoWalka" target="_blank" class="btn github">GitHub</a>
-      <a href="https://linkedin.com/in/bowalka" target="_blank" class="btn linkedin">LinkedIn</a>
-    </div>
-
-    <section class="about">
-      <h2>The who and the what</h2>
-      <p>Independent software developer and Systems Administrator focused on data-analysis, and building infrastructure</p>
+    <!-- TECH STACK -->
+    <section id="skills" style="background: #111122;">
+        <div class="container">
+            <h2>Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill">Python</div>
+                <div class="skill">Shell</div>
+                <div class="skill">Java</div>
+                <div class="skill">Android Build System</div>
+                <div class="skill">TWRP</div>
+                <div class="skill">Linux</div>
+                <div class="skill">GitHub Pages</div>
+                <div class="skill">HTML / CSS / JS</div>
+            </div>
+        </div>
     </section>
 
-    <section class="tech-stack">
-      <h2>Tech Stack</h2>
-      <div class="skills-grid">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">Shell</span>
-        <span class="skill-tag">Java</span>
-        <span class="skill-tag">Kotlin</span>
-        <span class="skill-tag">Android Build System</span>
-        <span class="skill-tag">TWRP</span>
-        <span class="skill-tag">Linux</span>
-        <span class="skill-tag">GitHub Pages</span>
-        <span class="skill-tag">HTML/CSS/JS</span>
-        <span class="skill-tag">C++</span>
-        <span class="skill-tag">Rust</span>
-        <span class="skill-tag">Creative Coding</span>
-      </div>
+    <!-- ALL GITHUB REPOSITORIES -->
+    <section id="projects">
+        <div class="container">
+            <h2>All GitHub Repositories</h2>
+            <div id="repos-grid" class="grid"></div>
+        </div>
     </section>
 
-    <section class="repositories">
-      <h2>All GitHub Repositories</h2>
-      <div class="repos-grid" id="repos-grid">
-        <!-- Repositories will load here via script.js -->
-      </div>
+    <!-- LIVE DEMOS -->
+    <section id="demos">
+        <div class="container">
+            <h2>Live Demos</h2>
+            <div id="demos-grid" class="grid"></div>
+        </div>
     </section>
 
-    <section class="live-demos">
-      <h2>Live Demos</h2>
-      <div class="demos-grid" id="demos-grid">
-        <!-- Live demos will load here via script.js -->
-      </div>
-    </section>
-  </div>
+    <!-- FOOTER -->
+    <footer style="text-align:center; padding:60px 20px; background:#0a0a1f; border-top:1px solid #222244;">
+        <div class="container">
+            <p>&copy; Beau Walker (BoWalka) • Orlando, Florida</p>
+            <p style="margin-top:10px; font-size:0.9rem; color:#777;">
+                All repositories are original works • Powered by GitHub Pages
+            </p>
+        </div>
+    </footer>
 
-  <script src="matrix.js"></script>
-  <script src="script.js"></script>
-</body>
-</html>
+    <!-- JAVASCRIPT (the final version we built) -->
+    <script>
+        const GITHUB_API = 'https://api.github.com/users/BoWalka/repos?per_page=100&sort=updated';
+
+        async function loadRepos() {
+            try {
+                const response = await fetch(GITHUB_API);
+                const repos = await response.json();
+
+                const myRepos = repos.filter(repo => 
+                    !repo.fork && 
+                    repo.name !== 'BoWalka' &&
+                    repo.name !== 'bowalka.com' &&
+                    repo.name !== 'privacy-policy' &&
+                    repo.name !== 'actions-learning-pathway'
+                );
+
+                renderRepos(myRepos);
+                renderDemos(myRepos.filter(repo => repo.homepage));
+            } catch (error) {
+                console.error('Error loading repos:', error);
+                document.getElementById('repos-grid').innerHTML = '<p>Unable to load repositories right now.</p>';
+            }
+        }
+
+        function createCard(repo, isDemo = false) {
+            return `
+                <a href="${isDemo ? repo.homepage : repo.html_url}" 
+                   target="_blank" 
+                   class="repo-card" 
+                   style="color: #ffffff !important; text-decoration: none !important; display: block;">
+                  <h2 style="font-size: 1.85rem; font-weight: 700; color: #ffffff !important; margin-bottom: 12px;">${repo.name}</h2>
+                  <p style="color: #e0e0e0 !important;">${repo.description || 'No description provided.'}</p>
+                  <div class="repo-meta" style="margin-top: 16px;">
+                    ${repo.language ? 
+                      `<span class="lang-badge">${repo.language}</span>` : ''}
+                    <span style="color: #ffffff !important;">⭐ ${repo.stargazers_count}</span>
+                    <span style="color: #e0e0e0 !important;">Updated ${new Date(repo.updated_at).toLocaleDateString()}</span
