@@ -3,186 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Beau Walker (BoWalka) - Software Developer & Open-Source Engineer. Android tooling, Python creative projects, cyberdecks, and more.">
+    <meta name="description" content="Beau Walker (BoWalka) - Software Developer & Open-Source Engineer">
     <title>Beau Walker | Software Developer & Open-Source Engineer</title>
     <style>
-        :root {
-            --neon: #00D4FF;
-        }
+        :root { --neon: #00D4FF; }
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: system-ui, -apple-system, sans-serif;
             background: #0a0a1f;
             color: #e0e0e0;
             line-height: 1.6;
-            overflow-x: hidden;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        /* Hero */
+
         .hero {
             text-align: center;
-            padding: 120px 20px 80px;
+            padding: 140px 20px 100px;
             background: linear-gradient(180deg, #0a0a1f, #1a0033);
         }
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: white;
-        }
-        .hero p {
-            font-size: 1.4rem;
-            color: var(--neon);
-            margin: 10px 0 20px;
-        }
-        
-        section { padding: 80px 0; }
+        .hero h1 { font-size: 3.8rem; font-weight: 700; color: white; }
+        .hero p { font-size: 1.5rem; color: var(--neon); margin: 10px 0 30px; }
+
+        section { padding: 90px 0; }
         h2 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             color: white;
         }
-        
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 28px;
         }
-        
-        /* Repo Cards - Uniform & Clean */
+
+        /* UNIFORM REPO CARDS - very strong styles */
         .repo-card {
             background: #14142b;
-            border: 2px solid #222244;
-            border-radius: 16px;
-            padding: 28px;
+            border: 3px solid #222244;
+            border-radius: 18px;
+            padding: 32px 28px;
             transition: all 0.3s ease;
             text-decoration: none;
-            color: white;
+            color: #ffffff !important;
             display: block;
         }
         .repo-card:hover {
             border-color: var(--neon);
-            transform: translateY(-6px);
-            box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
         }
         .repo-card h2 {
-            font-size: 1.85rem;
+            font-size: 1.9rem;
             font-weight: 700;
-            margin-bottom: 12px;
-            color: white;
+            color: #ffffff !important;
+            margin-bottom: 14px;
         }
         .repo-card p {
-            color: #e0e0e0;
-            margin-bottom: 20px;
-            min-height: 70px;
+            color: #e0e0e0 !important;
+            margin-bottom: 22px;
+            min-height: 75px;
         }
         .repo-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 14px;
             align-items: center;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
         .lang-badge {
             background-color: #00D4FF;
             color: #000;
-            padding: 4px 12px;
+            padding: 6px 14px;
             border-radius: 9999px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 0.95rem;
         }
-        
-        /* Buttons & Badges */
-        .demo-badge {
-            color: #00D4FF;
-            font-weight: 600;
-        }
-        
-        /* Tech Stack */
+        .demo-badge { color: #00D4FF; font-weight: 700; }
+
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 14px;
             justify-content: center;
         }
         .skill {
             background: #1f1f3d;
             color: white;
-            padding: 12px 24px;
+            padding: 14px 26px;
             border-radius: 50px;
-            font-weight: 500;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO -->
-    <header class="hero">
-        <div class="container">
+    <div class="container">
+
+        <!-- HERO -->
+        <section class="hero">
             <h1>Beau Walker</h1>
             <p>Software Developer &amp; Open-Source Engineer</p>
-            <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
+            <p style="max-width:720px;margin:0 auto;font-size:1.2rem;">
                 Florida-based developer building Android tools, creative Python projects, custom cyberdecks, and open-source systems.
             </p>
-        </div>
-    </header>
+        </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="container">
+        <!-- ABOUT -->
+        <section>
             <h2>About Me</h2>
-            <p style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.15rem;">
-                I'm a passionate software developer focused on low-level Android tooling, creative coding, and building hardware/software hybrids. 
-                I love open source and turning ideas into functional tools and art.
+            <p style="max-width:820px;margin:0 auto;text-align:center;font-size:1.2rem;">
+                Passionate software developer focused on low-level Android tooling, creative coding, and building hardware/software hybrids.
             </p>
-        </div>
-    </section>
+        </section>
 
-    <!-- TECH STACK -->
-    <section id="skills" style="background: #111122;">
-        <div class="container">
+        <!-- TECH STACK -->
+        <section style="background:#111122;">
             <h2>Tech Stack</h2>
             <div class="skills-grid">
-                <div class="skill">Python</div>
-                <div class="skill">Shell</div>
-                <div class="skill">Java</div>
-                <div class="skill">Android Build System</div>
-                <div class="skill">TWRP</div>
-                <div class="skill">Linux</div>
-                <div class="skill">GitHub Pages</div>
-                <div class="skill">HTML / CSS / JS</div>
+                <div class="skill">Python</div><div class="skill">Shell</div><div class="skill">Java</div>
+                <div class="skill">Kotlin</div><div class="skill">Android Build System</div><div class="skill">TWRP</div>
+                <div class="skill">Linux</div><div class="skill">GitHub Pages</div><div class="skill">HTML/CSS/JS</div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ALL GITHUB REPOSITORIES -->
-    <section id="projects">
-        <div class="container">
+        <!-- REPOS -->
+        <section>
             <h2>All GitHub Repositories</h2>
             <div id="repos-grid" class="grid"></div>
-        </div>
-    </section>
+        </section>
 
-    <!-- LIVE DEMOS -->
-    <section id="demos">
-        <div class="container">
+        <!-- DEMOS -->
+        <section>
             <h2>Live Demos</h2>
             <div id="demos-grid" class="grid"></div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FOOTER -->
-    <footer style="text-align:center; padding:60px 20px; background:#0a0a1f; border-top:1px solid #222244;">
-        <div class="container">
-            <p>&copy; Beau Walker (BoWalka) • Orlando, Florida</p>
-            <p style="margin-top:10px; font-size:0.9rem; color:#777;">
-                All repositories are original works • Powered by GitHub Pages
-            </p>
-        </div>
-    </footer>
+    </div>
 
-    <!-- JAVASCRIPT (the final version we built) -->
     <script>
         const GITHUB_API = 'https://api.github.com/users/BoWalka/repos?per_page=100&sort=updated';
 
@@ -199,24 +158,39 @@
                     repo.name !== 'actions-learning-pathway'
                 );
 
-                renderRepos(myRepos);
-                renderDemos(myRepos.filter(repo => repo.homepage));
-            } catch (error) {
-                console.error('Error loading repos:', error);
-                document.getElementById('repos-grid').innerHTML = '<p>Unable to load repositories right now.</p>';
+                // Render repos
+                document.getElementById('repos-grid').innerHTML = myRepos.map(repo => `
+                    <a href="${repo.html_url}" target="_blank" class="repo-card">
+                        <h2>${repo.name}</h2>
+                        <p>${repo.description || 'No description provided.'}</p>
+                        <div class="repo-meta">
+                            ${repo.language ? `<span class="lang-badge">${repo.language}</span>` : ''}
+                            <span>⭐ ${repo.stargazers_count}</span>
+                            <span>Updated ${new Date(repo.updated_at).toLocaleDateString()}</span>
+                        </div>
+                    </a>
+                `).join('');
+
+                // Render demos
+                const demos = myRepos.filter(r => r.homepage);
+                const demosHTML = demos.length ? demos.map(repo => `
+                    <a href="${repo.homepage}" target="_blank" class="repo-card">
+                        <h2>${repo.name}</h2>
+                        <p>${repo.description || 'Live demo of this project'}</p>
+                        <div class="repo-meta">
+                            ${repo.language ? `<span class="lang-badge">${repo.language}</span>` : ''}
+                            <span class="demo-badge">Open Live Demo →</span>
+                        </div>
+                    </a>
+                `).join('') : '<p style="text-align:center;grid-column:1/-1;">No live .io demos yet. More coming soon!</p>';
+                document.getElementById('demos-grid').innerHTML = demosHTML;
+            } catch (err) {
+                console.error(err);
+                document.getElementById('repos-grid').innerHTML = '<p style="text-align:center;grid-column:1/-1;">Unable to load repositories right now.</p>';
             }
         }
 
-        function createCard(repo, isDemo = false) {
-            return `
-                <a href="${isDemo ? repo.homepage : repo.html_url}" 
-                   target="_blank" 
-                   class="repo-card" 
-                   style="color: #ffffff !important; text-decoration: none !important; display: block;">
-                  <h2 style="font-size: 1.85rem; font-weight: 700; color: #ffffff !important; margin-bottom: 12px;">${repo.name}</h2>
-                  <p style="color: #e0e0e0 !important;">${repo.description || 'No description provided.'}</p>
-                  <div class="repo-meta" style="margin-top: 16px;">
-                    ${repo.language ? 
-                      `<span class="lang-badge">${repo.language}</span>` : ''}
-                    <span style="color: #ffffff !important;">⭐ ${repo.stargazers_count}</span>
-                    <span style="color: #e0e0e0 !important;">Updated ${new Date(repo.updated_at).toLocaleDateString()}</span
+        document.addEventListener('DOMContentLoaded', loadRepos);
+    </script>
+</body>
+</html>
