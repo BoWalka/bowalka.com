@@ -1,67 +1,66 @@
 const GITHUB_API = 'https://api.github.com/users/BoWalka/repos?per_page=100&sort=updated';
 
-// Load repositories
+// Load ONLY your original repos (no forks)
 async function loadRepos() {
   try {
     const response = await fetch(GITHUB_API);
     const repos = await response.json();
-    // Skip the profile repo BoWalka
-    const filteredRepos = repos.filter(repo => repo.name !== 'BoWalka');
-    renderRepos(filteredRepos);
-    // Live demos: repos with homepage
-    const demos = filteredRepos.filter(repo => repo.homepage);
+
+    // 🔥 Only show repos YOU created (skip forks + profile repo)
+    const myRepos = repos.filter(repo => 
+      !repo.fork && repo.name !== 'BoWalka'
+    );
+
+    renderRepos(myRepos);
+
+    // Live demos (only repos that have a GitHub Pages homepage)
+    const demos = myRepos.filter(repo => repo.homepage);
     renderDemos(demos);
   } catch (error) {
-    console.error('Error loading repositories:', error);
-    // Fallback or error message
-    document.getElementById('repos-grid').innerHTML = '<p>Unable to load repositories. Please check back later.</p>';
-    document.getElementById('demos-grid').innerHTML = '<p>Unable to load live demos.</p>';
+    console.error('Error loading repos:', error);
+    document.getElementById('repos-grid').innerHTML = '<p>Unable to load repositories right now.</p>';
+    document.getElementById('demos-grid').innerHTML = '<p>No live demos yet.</p>';
   }
 }
 
-// Render all repositories
+// Build beautiful repo cards with avatar + full clickable link
 function renderRepos(repos) {
   const container = document.getElementById('repos-grid');
   container.innerHTML = repos.map(repo => `
-    <div class="repo-card">
-      <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
-      <p>${repo.description || 'No description available'}</p>
+    <a href="${repo.html_url}" target="_blank" class="repo-card">
+      <div class="repo-header">
+        <img src="https://github.com/BoWalka.png" alt="Beau Walker" class="repo-avatar">
+        <h3>${repo.name}</h3>
+      </div>
+      <p>${repo.description || 'No description provided.'}</p>
       <div class="repo-meta">
-        <span>Language: ${repo.language || 'N/A'}</span>
+        ${repo.language ? `<span class="lang">${repo.language}</span>` : ''}
         <span>⭐ ${repo.stargazers_count}</span>
+        <span>Updated ${new Date(repo.updated_at).toLocaleDateString()}</span>
       </div>
-      <div class="repo-meta">
-        <span>Last updated: ${new Date(repo.updated_at).toLocaleDateString()}</span>
-      </div>
-      ${repo.homepage ? `<a href="${repo.homepage}" class="live-demo-btn" target="_blank">Live Demo →</a>` : ''}
-    </div>
+      ${repo.homepage ? `<span class="demo-badge">Live Demo Available →</span>` : ''}
+    </a>
   `).join('');
 }
 
-// Render live demos
+// Same style for Live Demos section
 function renderDemos(demos) {
   const container = document.getElementById('demos-grid');
   if (demos.length === 0) {
-    container.innerHTML = '<p>No live demos available at the moment.</p>';
+    container.innerHTML = '<p>No live .io demos yet. More coming soon!</p>';
     return;
   }
   container.innerHTML = demos.map(repo => `
-    <div class="repo-card">
-      <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
-      <p>${repo.description || 'No description available'}</p>
-      <div class="repo-meta">
-        <span>Language: ${repo.language || 'N/A'}</span>
-        <span>⭐ ${repo.stargazers_count}</span>
+    <a href="${repo.homepage}" target="_blank" class="repo-card demo-card">
+      <div class="repo-header">
+        <img src="https://github.com/BoWalka.png" alt="Beau Walker" class="repo-avatar">
+        <h3>${repo.name}</h3>
       </div>
-      <div class="repo-meta">
-        <span>Last updated: ${new Date(repo.updated_at).toLocaleDateString()}</span>
-      </div>
-      <a href="${repo.homepage}" class="live-demo-btn" target="_blank">Live Demo →</a>
-    </div>
+      <p>${repo.description || 'Live demo of this project'}</p>
+      <span class="demo-badge">Open Live Demo →</span>
+    </a>
   `).join('');
 }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadRepos();
-});
+// Auto-run when page loads
+document.addEventListener('DOMContentLoaded', loadRepos);
