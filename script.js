@@ -1,140 +1,67 @@
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let products = [];
+const GITHUB_API = 'https://api.github.com/users/BoWalka/repos?per_page=100&sort=updated';
 
-// Load products
-async function loadProducts() {
+// Load repositories
+async function loadRepos() {
   try {
-    const response = await fetch('products.json');
-    products = await response.json();
-    renderProducts(products);
-    renderTestimonials(products);
+    const response = await fetch(GITHUB_API);
+    const repos = await response.json();
+    // Skip the profile repo BoWalka
+    const filteredRepos = repos.filter(repo => repo.name !== 'BoWalka');
+    renderRepos(filteredRepos);
+    // Live demos: repos with homepage
+    const demos = filteredRepos.filter(repo => repo.homepage);
+    renderDemos(demos);
   } catch (error) {
-    console.error('Error loading products:', error);
+    console.error('Error loading repositories:', error);
+    // Fallback or error message
+    document.getElementById('repos-grid').innerHTML = '<p>Unable to load repositories. Please check back later.</p>';
+    document.getElementById('demos-grid').innerHTML = '<p>Unable to load live demos.</p>';
   }
 }
 
-// Render products
-function renderProducts(products) {
-  const container = document.getElementById('products');
-  container.innerHTML = products.map(product => `
-    <div class="product" data-id="${product.id}">
-      <img src="${product.image}" alt="${product.name}" loading="lazy">
-      <h3>${product.name}</h3>
-      <div class="price">$${product.price}</div>
-      ${product.oldPrice ? `<div class="old-price">$${product.oldPrice}</div>` : ''}
-      <ul class="specs">
-        ${product.specs.map(spec => `<li>${spec}</li>`).join('')}
-      </ul>
-      ${product.stock < 5 ? `<span class="stock-badge">Low Stock! (${product.stock} left)</span>` : ''}
-      <div class="rating">⭐ ${computeAvgRating(product.reviews).toFixed(1)} (${product.reviews.length} reviews)</div>
-      <button class="buy-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+// Render all repositories
+function renderRepos(repos) {
+  const container = document.getElementById('repos-grid');
+  container.innerHTML = repos.map(repo => `
+    <div class="repo-card">
+      <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+      <p>${repo.description || 'No description available'}</p>
+      <div class="repo-meta">
+        <span>Language: ${repo.language || 'N/A'}</span>
+        <span>⭐ ${repo.stargazers_count}</span>
+      </div>
+      <div class="repo-meta">
+        <span>Last updated: ${new Date(repo.updated_at).toLocaleDateString()}</span>
+      </div>
+      ${repo.homepage ? `<a href="${repo.homepage}" class="live-demo-btn" target="_blank">Live Demo →</a>` : ''}
     </div>
   `).join('');
 }
 
-// Compute average rating
-function computeAvgRating(reviews) {
-  return reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
-}
-
-// Render testimonials
-function renderTestimonials(products) {
-  const allReviews = products.flatMap(p => p.reviews.map(r => ({...r, product: p.name})));
-  const container = document.getElementById('testimonials');
-  const testimonials = allReviews.slice(0, 6); // Top 6
-  container.innerHTML = testimonials.map(review => `
-    <div class="testimonial">
-      <p>"${review.text}"</p>
-      <div><strong>${review.user}</strong> - ${review.product}</div>
-      <div>⭐ ${review.rating}</div>
-    </div>
-  `).join('');
-}
-
-function addToCart(productId) {
-  const product = products.find(p => p.id === productId);
-  if (!product) return alert('Product not found');
-  const existing = cart.find(item => item.id === productId);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({...product, quantity: 1});
-  }
-  localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartUI();
-  // Visual feedback
-  const btn = event.target;
-  btn.textContent = 'Added!';
-  setTimeout(() => btn.textContent = 'Add to Cart', 1000);
-}
-
-// Update cart UI
-function updateCartUI() {
-  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-  document.getElementById('cart-count').textContent = count;
-  const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  document.getElementById('cart-total').textContent = total.toFixed(2);
-}
-
-// Cart modal
-const cartModal = document.getElementById('cart-modal');
-const cartBtn = document.getElementById('cart-btn');
-const closeCart = document.querySelector('.close-cart');
-const checkoutBtn = document.getElementById('checkout-btn');
-
-cartBtn.onclick = () => cartModal.style.display = 'flex';
-closeCart.onclick = () => cartModal.style.display = 'none';
-window.onclick = (e) => { if (e.target === cartModal) cartModal.style.display = 'none'; };
-
-checkoutBtn.onclick = () => {
-  localStorage.setItem('cart', JSON.stringify(cart)); // Persist
-  window.location.href = 'checkout.html';
-};
-
-// Render cart items in modal
-function renderCartItems() {
-  const container = document.getElementById('cart-items');
-  if (cart.length === 0) {
-    container.innerHTML = '<p>Your cart is empty</p>';
+// Render live demos
+function renderDemos(demos) {
+  const container = document.getElementById('demos-grid');
+  if (demos.length === 0) {
+    container.innerHTML = '<p>No live demos available at the moment.</p>';
     return;
   }
-  container.innerHTML = cart.map(item => `
-    <div class="cart-item">
-      <span>${item.name} x${item.quantity}</span>
-      <span>$${ (item.price * item.quantity).toFixed(2) }</span>
-      <button onclick="removeFromCart(${item.id})" style="background:#f00;color:#fff;border:none;padding:5px 10px;">Remove</button>
+  container.innerHTML = demos.map(repo => `
+    <div class="repo-card">
+      <h3><a href="${repo.html_url}" target="_blank">${repo.name}</a></h3>
+      <p>${repo.description || 'No description available'}</p>
+      <div class="repo-meta">
+        <span>Language: ${repo.language || 'N/A'}</span>
+        <span>⭐ ${repo.stargazers_count}</span>
+      </div>
+      <div class="repo-meta">
+        <span>Last updated: ${new Date(repo.updated_at).toLocaleDateString()}</span>
+      </div>
+      <a href="${repo.homepage}" class="live-demo-btn" target="_blank">Live Demo →</a>
     </div>
   `).join('');
 }
 
-// Remove from cart
-function removeFromCart(productId) {
-  cart = cart.filter(item => item.id !== productId);
-  localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartUI();
-  renderCartItems();
-}
-
-// Urgency timer (global sale)
-function startSaleTimer() {
-  const endTime = new Date(Date.now() + 24*60*60*1000).getTime(); // 24h
-  const timer = setInterval(() => {
-    const now = Date.now();
-    const distance = endTime - now;
-    const hours = Math.floor(distance / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    // Add to header or something
-    if (distance < 0) {
-      clearInterval(timer);
-    }
-  }, 1000);
-}
-
-// Init
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', async () => {
-  await loadProducts();
-  updateCartUI();
-  renderCartItems();
-  startSaleTimer();
+  await loadRepos();
 });
