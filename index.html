@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="bowalkadesigns">
-    <title>bowalkadesigns | graphic design .software development . systems administration</title>
+    <meta name="description" content="Beau Walker (BoWalka) - Software Developer & Open-Source Engineer">
+    <title>Beau Walker | Software Developer & Open-Source Engineer</title>
     <style>
         :root { --neon: #00D4FF; }
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -15,13 +15,14 @@
             overflow-x: hidden;
         }
 
-        /* MATRIX BACKGROUND */
+        /* MATRIX BACKGROUND - YOUR EXACT YEET VERSION */
         #matrix {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: -1;
-            opacity: 0.15;
+            opacity: 0.12;
+            pointer-events: none;
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
@@ -85,7 +86,7 @@
 </head>
 <body>
 
-    <!-- MATRIX RAIN CANVAS -->
+    <!-- YOUR MATRIX BACKGROUND -->
     <canvas id="matrix"></canvas>
 
     <div class="container">
@@ -123,7 +124,7 @@
             <div id="repos-grid" class="grid"></div>
         </section>
 
-        <!-- DEMOS -->
+        <!-- LIVE DEMOS -->
         <section>
             <h2>Live Demos</h2>
             <div id="demos-grid" class="grid"></div>
@@ -132,7 +133,7 @@
     </div>
 
     <script>
-        // === MATRIX RAIN BACKGROUND ===
+        // === YOUR EXACT MATRIX YEET BACKGROUND ===
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
 
@@ -143,21 +144,19 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        const chars = "01アイウエオカキクケコ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        const fontSize = 14;
+        const emojis = ['😂', '👌', 'YEET', '🤣', '👌', '😂', 'YEET', '👌'];
+        const fontSize = 20;
         let columns = canvas.width / fontSize;
-        const drops = [];
+        const drops = Array(Math.floor(columns)).fill(1);
 
-        for (let x = 0; x < columns; x++) drops[x] = Math.random() * canvas.height / fontSize;
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(10, 10, 31, 0.05)';
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00D4FF';
+            ctx.fillStyle = '#0f0';
             ctx.font = fontSize + 'px monospace';
 
             for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
+                const text = emojis[Math.floor(Math.random() * emojis.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
@@ -166,9 +165,9 @@
                 drops[i]++;
             }
         }
-        setInterval(drawMatrix, 35);
+        setInterval(draw, 50);
 
-        // === REPO LOADER (unchanged) ===
+        // === REPO LOADER ===
         const GITHUB_API = 'https://api.github.com/users/BoWalka/repos?per_page=100&sort=updated';
 
         async function loadRepos() {
@@ -210,6 +209,7 @@
                 document.getElementById('demos-grid').innerHTML = demosHTML;
             } catch (err) {
                 console.error(err);
+                document.getElementById('repos-grid').innerHTML = '<p style="text-align:center;grid-column:1/-1;">Unable to load repositories right now.</p>';
             }
         }
 
