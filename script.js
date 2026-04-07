@@ -1,13 +1,16 @@
 const GITHUB_API = 'https://api.github.com/users/BoWalka/repos?per_page=100&sort=updated';
 
-// Load ONLY your original repos
+// Load ONLY your original repos + exclude the two you don't want shown
 async function loadRepos() {
   try {
     const response = await fetch(GITHUB_API);
     const repos = await response.json();
 
     const myRepos = repos.filter(repo => 
-      !repo.fork && repo.name !== 'BoWalka'
+      !repo.fork && 
+      repo.name !== 'BoWalka' &&
+      repo.name !== 'privacy-policy' &&           // ← hidden
+      repo.name !== 'actions-learning-pathway'    // ← hidden
     );
 
     renderRepos(myRepos);
@@ -18,7 +21,7 @@ async function loadRepos() {
   }
 }
 
-// Force white text + no blue links
+// Large bold white headers + high-contrast text (no blue links)
 function renderRepos(repos) {
   const container = document.getElementById('repos-grid');
   container.innerHTML = repos.map(repo => `
