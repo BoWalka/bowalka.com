@@ -24,7 +24,7 @@
             pointer-events: none;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
-        .hero { text-align: center; padding: 160px 20px 100px; }
+        .hero { text-align: center; padding: 140px 20px 80px; }
         .hero h1 { font-size: 3.8rem; font-weight: 700; color: white; text-shadow: 0 0 20px var(--neon); }
         .hero p { font-size: 1.5rem; color: var(--neon); margin: 10px 0 30px; }
         .lead-button {
@@ -32,11 +32,11 @@
             background: #00ff9d;
             color: #000;
             font-weight: bold;
-            font-size: 1.4rem;
-            padding: 18px 42px;
+            font-size: 1.35rem;
+            padding: 18px 40px;
             border-radius: 12px;
             text-decoration: none;
-            margin: 30px 0;
+            margin: 35px 0 20px;
             box-shadow: 0 0 30px #00ff9d;
             transition: all 0.3s;
         }
@@ -60,14 +60,16 @@
                 Get Fresh Google Maps Business Leads →
             </a>
             
-            <p style="color:#00ff9d; margin-top:20px; font-size:1.1rem;">
+            <p style="color:#00ff9d; font-size:1.1rem;">
                 Targeted leads with phone numbers • Any niche • Any US city
             </p>
         </div>
-        <!-- Rest of your original content can go here -->
         <section>
-            <h2>Current Projects & Skills</h2>
-            <p style="text-align:center; color:#888;">Your original portfolio content would go here...</p>
+            <h2>Current Work</h2>
+            <p style="text-align:center; color:#aaa; max-width:800px; margin:0 auto;">
+                Building autonomous AI agents, lead generation systems, and open source tools.<br>
+                Currently focused on practical AI that generates real business value.
+            </p>
         </section>
     </div>
     <script>
@@ -92,6 +94,10 @@
             }
         }
         setInterval(draw, 35);
+        window.addEventListener('resize', () => {
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+        });
     </script>
 </body>
 </html>
