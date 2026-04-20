@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fresh, verified Google Maps business leads with phone numbers. HVAC, Plumbing, Restaurants, Dentists & more. Delivered fast.">
-    <title>LeadGen by Beau Walker | Fresh Google Maps Leads</title>
+    <meta name="description" content="Fresh Google Maps business leads with phone numbers. HVAC, Plumbing, Dentists, Restaurants and more. Fast delivery.">
+    <title>LeadGen | Fresh Google Maps Business Leads</title>
     <style>
         :root { --neon: #00ff9d; --dark: #0a0a0f; --gray: #1a1a23; }
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -17,12 +17,12 @@
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         header {
             background: linear-gradient(180deg, #111118, #0a0a0f);
-            padding: 2rem 0;
-            border-bottom: 1px solid #222;
+            padding: 3rem 0;
             text-align: center;
+            border-bottom: 1px solid #222;
         }
-        h1 { font-size: 2.8rem; color: white; margin-bottom: 8px; }
-        .tagline { color: var(--neon); font-size: 1.3rem; font-weight: 500; }
+        h1 { font-size: 3rem; color: white; }
+        .tagline { color: var(--neon); font-size: 1.4rem; margin: 10px 0 30px; }
         .pricing {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -41,47 +41,60 @@
         .popular::before {
             content: "MOST POPULAR";
             position: absolute;
-            top: -12px; left: 50%;
+            top: -14px; left: 50%;
             transform: translateX(-50%);
             background: var(--neon);
             color: black;
-            font-size: 0.8rem;
-            padding: 4px 18px;
-            border-radius: 20px;
+            font-size: 0.85rem;
+            padding: 5px 20px;
+            border-radius: 30px;
             font-weight: bold;
         }
-        .price { font-size: 2.8rem; font-weight: 700; color: white; margin: 15px 0; }
+        .price { font-size: 2.6rem; font-weight: 700; color: white; margin: 15px 0; }
         .btn {
-            display: inline-block;
+            display: block;
+            text-align: center;
             background: var(--neon);
             color: black;
             font-weight: bold;
-            padding: 14px 32px;
-            border-radius: 8px;
+            padding: 16px;
+            border-radius: 10px;
             text-decoration: none;
-            margin-top: 20px;
-            transition: all 0.3s;
+            margin-top: 25px;
+            font-size: 1.1rem;
         }
-        .btn:hover { background: white; transform: scale(1.05); }
+        .btn:hover { background: white; }
         form {
-            max-width: 600px;
-            margin: 40px auto;
+            max-width: 620px;
+            margin: 60px auto;
             background: var(--gray);
-            padding: 30px;
-            border-radius: 12px;
+            padding: 40px;
+            border-radius: 16px;
         }
         input, textarea {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             margin: 10px 0;
             background: #111;
-            border: 1px solid #333;
+            border: 1px solid #444;
             color: white;
-            border-radius: 6px;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--neon);
+            color: black;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
         }
         footer {
             text-align: center;
-            padding: 60px 0 30px;
+            padding: 60px 0;
             color: #555;
             font-size: 0.9rem;
         }
@@ -90,8 +103,8 @@
 <body>
     <header>
         <div class="container">
-            <h1>LeadGen by Beau Walker</h1>
-            <p class="tagline">Fresh • Verified • Google Maps Business Leads</p>
+            <h1>LeadGen</h1>
+            <p class="tagline">Fresh Google Maps Business Leads with Phone Numbers</p>
         </div>
     </header>
     <div class="container">
@@ -100,37 +113,42 @@
                 <h3>Basic</h3>
                 <div class="price">$35</div>
                 <p>25 high-quality leads</p>
-                <a href="#contact" class="btn">Get 25 Leads →</a>
+                <p style="color:#888;">One city + niche • Clean CSV</p>
+                <a href="#contact" class="btn">Order $35 Package</a>
             </div>
             <div class="card popular">
                 <h3>Standard</h3>
                 <div class="price">$65</div>
                 <p><strong>50 high-quality leads</strong></p>
-                <p>Most Popular</p>
-                <a href="#contact" class="btn">Get 50 Leads →</a>
+                <p style="color:#888;">Most Popular • CSV + Summary Report</p>
+                <a href="#contact" class="btn">Order $65 Package</a>
             </div>
             <div class="card">
                 <h3>Premium</h3>
                 <div class="price">$120</div>
-                <p>100 high-quality leads + second city</p>
-                <a href="#contact" class="btn">Get 100 Leads →</a>
+                <p>100 leads + second city</p>
+                <p style="color:#888;">Best value for serious lead buyers</p>
+                <a href="#contact" class="btn">Order $120 Package</a>
             </div>
         </div>
-        <h2 style="text-align:center; margin:50px 0 20px;">Popular right now: HVAC, Plumbing, Dentists, Restaurants, Roofers</h2>
-        <form id="contact" action="https://formspree.io/f/https://formspree.io/f/mgorzqaq" method="POST">
-            <h3 style="text-align:center; margin-bottom:20px;">Tell me what leads you need</h3>
-            <input type="text" name="niche" placeholder="Niche / Category (e.g. HVAC companies)" required>
+        <h2 style="text-align:center; margin:50px 0 30px;">Currently in high demand:</h2>
+        <p style="text-align:center; color:#aaa;">
+            HVAC • Plumbing • Dentists • Restaurants • Roofers • Chiropractors • Real Estate Agents
+        </p>
+        <form id="contact" action="https://formspree.io/f/YOUR_FORM_CODE_HERE" method="POST">
+            <h3 style="text-align:center; margin-bottom:25px;">Tell me what leads you need</h3>
+            <input type="text" name="niche" placeholder="Niche (e.g. HVAC companies, dentists, restaurants)" required>
             <input type="text" name="location" placeholder="City and State (e.g. Phoenix, AZ)" required>
-            <input type="email" name="email" placeholder="Your email address" required>
-            <textarea name="message" rows="4" placeholder="Any special requirements? (number of leads, specific filters, etc.)" required></textarea>
-            <button type="submit" class="btn" style="width:100%; margin-top:10px;">Send Request - I'll reply within 24 hours</button>
+            <input type="email" name="_replyto" placeholder="Your email address" required>
+            <textarea name="message" rows="5" placeholder="Any special requirements? Number of leads, specific filters, etc." required></textarea>
+            <button type="submit">Send Request - I'll reply within 24 hours</button>
         </form>
-        <p style="text-align:center; color:#666; font-size:0.9rem;">
-            I manually review every request. No spam. Real human on the other side.
+        <p style="text-align:center; color:#666; margin-top:30px;">
+            I review every request manually. No bots. Real human on this side.
         </p>
     </div>
     <footer>
-        <p>LeadGen by Beau Walker • bowalka.com • Fresh public data from Google Maps • For legitimate business use only</p>
+        <p>LeadGen by Beau Walker • bowalka.com • Fresh public data from Google Maps • Legitimate business use only</p>
     </footer>
 </body>
 </html>
