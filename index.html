@@ -3,72 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beau Walker | Gallery</title>
+    <title>Beau's Gallery</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #0f0f0f;
+            background: #0a0a0a;
             color: #ddd;
             margin: 0;
             padding: 20px;
-        }
-        h1 {
             text-align: center;
-            color: #00ffcc;
+        }
+        h1 { 
+            color: #00ffcc; 
+            margin-bottom: 30px;
         }
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-            max-width: 1400px;
+            gap: 20px;
+            max-width: 1600px;
             margin: 0 auto;
         }
         .gallery img {
             width: 100%;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 255, 204, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 255, 204, 0.25);
+            transition: all 0.3s ease;
         }
         .gallery img:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 255, 204, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 255, 204, 0.4);
         }
         .image-name {
-            text-align: center;
-            margin-top: 8px;
-            font-size: 0.9em;
-            color: #aaa;
+            margin-top: 10px;
+            color: #888;
+            font-size: 0.95em;
+        }
+        .loading {
+            color: #00ffcc;
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
     <h1>My Images Gallery</h1>
+    <div class="loading" id="status">Loading images...</div>
     <div class="gallery" id="gallery"></div>
 
     <script>
-        // List all your image filenames here (add new ones as you upload them)
-        const images = [
-            "photo1.jpg",
-            "cyberdeck.jpg",
-            "project2.png",
-            "screenshot.png",
-            // Add more lines like this:
-            // "another-image.webp",
-        ];
+        const repoOwner = "BoWalka";
+        const repoName = "bowalka.com";
+        const folderPath = "images";
 
-        const gallery = document.getElementById('gallery');
+        fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`)
+            .then(response => response.json())
+            .then(files => {
+                document.getElementById('status').style.display = 'none';
+                
+                const gallery = document.getElementById('gallery');
+                
+                // Filter only image files
+                const imageFiles = files.filter(file => 
+                    file.type === "file" && 
+                    /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name)
+                );
 
-        images.forEach(filename => {
-            const div = document.createElement('div');
-            div.innerHTML = `
-                <img src="images/${filename}" 
-                     alt="${filename}" 
-                     loading="lazy">
-                <div class="image-name">${filename}</div>
-            `;
-            gallery.appendChild(div);
-        });
+                if (imageFiles.length === 0) {
+                    gallery.innerHTML = "<p>No images found in /images folder yet.</p>";
+                    return;
+                }
+
+                imageFiles.forEach(file => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <img src="https://raw.githubusercontent.com/${repoOwner}/${repoName}/master/${folderPath}/${file.name}" 
+                             alt="${file.name}" 
+                             loading="lazy"
+                             onerror="this.style.display='none';">
+                        <div class="image-name">${file.name}</div>
+                    `;
+                    gallery.appendChild(div);
+                });
+            })
+            .catch(err => {
+                document.getElementById('status').innerHTML = 
+                    "Error loading images. Make sure images are in the <strong>/images</strong> folder.";
+                console.error(err);
+            });
     </script>
 </body>
 </html>
