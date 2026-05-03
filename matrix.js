@@ -16,7 +16,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 // Japanese characters + numbers + letters + emojis
-const chars = 'Bowalka Designs 🎨🎬📱🤖🚀📊💡✨🔥 0123456789 アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const chars = 'Bowalka Designs アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン 
 const charArray = chars.split('');
 
 const fontSize = 14;
