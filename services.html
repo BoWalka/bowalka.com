@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services | Bowalka - AI Rights Consultant</title>
-    <meta name="description" content="AI Compliance, Prompt Engineering, Edge-AI Architecture Services. EU AI Act ready. 24-72h delivery.">
+    <title>Services | Bowalka Designs</title>
+    <meta name="description" content="Professional graphic design services, AI prompt engineering, video production, and brand identity. Get a custom quote for your project.">
+    <link rel="stylesheet" href="style.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -12,9 +13,7 @@
             line-height: 1.7;
             color: #f0f0f0;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-            min-height: 100vh;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
         /* Matrix canvas */
         #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.12; pointer-events: none; }
@@ -28,11 +27,29 @@
             top: 0;
             z-index: 100;
         }
-        nav .container { display: flex; justify-content: space-between; align-items: center; }
-        nav .logo { font-size: 1.5em; font-weight: bold; background: linear-gradient(90deg, #ff6b6b, #feca57); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        nav .container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px;
+        }
+        nav .logo { 
+            font-size: 1.8em; 
+            font-weight: bold; 
+            background: linear-gradient(90deg, #ff6b6b, #feca57); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
         nav .logo a { text-decoration: none; }
         nav ul { list-style: none; display: flex; gap: 30px; }
-        nav a { color: #aaa; text-decoration: none; transition: color 0.3s; }
+        nav a { 
+            color: #aaa; 
+            text-decoration: none; 
+            transition: color 0.3s; 
+            font-weight: 500;
+        }
         nav a:hover { color: #feca57; }
         nav .cta-btn {
             background: linear-gradient(90deg, #ff6b6b, #ee5a5a);
@@ -45,119 +62,294 @@
         /* Hero */
         .page-hero {
             text-align: center;
-            padding: 100px 0 60px;
+            padding: 100px 20px 80px;
+            background: radial-gradient(ellipse at center, rgba(255,107,107,0.1) 0%, transparent 70%);
         }
-        .page-hero h1 { font-size: 3em; margin-bottom: 20px; }
-        .page-hero p { font-size: 1.3em; color: #888; max-width: 600px; margin: 0 auto; }
+        .page-hero h1 { 
+            font-size: 3.5em; 
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+        }
+        .page-hero p { 
+            font-size: 1.4em; 
+            color: #888; 
+            max-width: 700px; 
+            margin: 0 auto;
+        }
         
-        /* Services */
-        .services-section { padding: 60px 0 100px; }
-        .service-item {
+        /* Services Grid */
+        .services-section { 
+            padding: 80px 20px; 
+            max-width: 1400px; 
+            margin: 0 auto;
+        }
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+            gap: 40px;
+        }
+        .service-card {
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 20px;
-            padding: 50px;
-            margin-bottom: 40px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 45px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
-        .service-item:hover {
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            border-color: rgba(255,107,107,0.3);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
         }
-        .service-item.featured {
-            background: linear-gradient(135deg, rgba(255,107,107,0.1) 0%, rgba(254,202,87,0.05) 100%);
+        .service-card.featured {
+            background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(254,202,87,0.05));
             border: 2px solid rgba(255,107,107,0.3);
         }
-        .service-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; flex-wrap: wrap; gap: 20px; }
-        .service-title h2 { font-size: 2em; color: #feca57; margin-bottom: 10px; }
-        .service-title .subtitle { color: #888; font-size: 1.1em; }
-        .service-price { text-align: right; }
-        .service-price .amount { font-size: 2.8em; font-weight: bold; color: #ff6b6b; }
-        .service-price .period { font-size: 0.9em; color: #666; }
-        
-        .service-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .detail-block h3 { color: #00d2d3; margin-bottom: 15px; font-size: 1.3em; }
-        .detail-block ul { list-style: none; }
-        .detail-block li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
-        .detail-block li:before { content: "✓ "; color: #00d2d3; font-weight: bold; }
-        
-        .service-cta { margin-top: 40px; display: flex; gap: 20px; flex-wrap: wrap; }
+        .service-card.featured .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(90deg, #ff6b6b, #ee5a5a);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        .service-icon { font-size: 4em; margin-bottom: 25px; }
+        .service-card h2 { 
+            font-size: 2em; 
+            margin-bottom: 15px; 
+            color: #feca57;
+        }
+        .service-card .subtitle { 
+            color: #888; 
+            font-size: 1.1em; 
+            margin-bottom: 25px; 
+            line-height: 1.6;
+        }
+        .service-details { margin: 25px 0; }
+        .service-details h3 { 
+            color: #00d2d3; 
+            margin-bottom: 15px; 
+            font-size: 1.3em;
+        }
+        .service-details ul { list-style: none; }
+        .service-details li { 
+            padding: 10px 0; 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .service-details li:before { 
+            content: "✓"; 
+            color: #00d2d3; 
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .service-cta { 
+            margin-top: 35px; 
+            display: flex; 
+            gap: 15px; 
+            flex-wrap: wrap;
+        }
         .btn {
-            padding: 15px 35px;
+            padding: 14px 30px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s;
             display: inline-block;
+            text-align: center;
         }
-        .btn-primary { background: linear-gradient(90deg, #ff6b6b, #ee5a5a); color: white; }
-        .btn-secondary { border: 2px solid #444; color: #ccc; background: transparent; }
-        .btn-outline { border: 2px solid #ff6b6b; color: #ff6b6b; background: transparent; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .btn-primary { 
+            background: linear-gradient(90deg, #ff6b6b, #ee5a5a); 
+            color: white;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+        }
+        .btn-secondary { 
+            border: 2px solid #444; 
+            color: #ccc; 
+            background: transparent;
+        }
+        .btn-outline { 
+            border: 2px solid #ff6b6b; 
+            color: #ff6b6b; 
+            background: transparent;
+        }
+        .btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .btn-outline:hover { background: rgba(255,107,107,0.1); }
         
-        /* Comparison Table */
-        .comparison-section { padding: 80px 0; background: rgba(0,0,0,0.2); }
-        .comparison-section h2 { text-align: center; font-size: 2.5em; margin-bottom: 50px; }
-        .comparison-table { overflow-x: auto; }
-        .comparison-table table { width: 100%; border-collapse: collapse; }
-        .comparison-table th, .comparison-table td { padding: 20px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .comparison-table th { background: rgba(255,255,255,0.03); color: #feca57; font-size: 1.1em; }
-        .comparison-table tr:hover { background: rgba(255,255,255,0.02); }
-        .comparison-table .check { color: #00d2d3; font-size: 1.4em; }
-        .comparison-table .cross { color: #666; font-size: 1.4em; }
+        /* Pricing Notice */
+        .pricing-notice {
+            background: rgba(254,202,87,0.1);
+            border: 1px solid rgba(254,202,87,0.3);
+            border-radius: 12px;
+            padding: 20px 30px;
+            margin-top: 80px;
+            text-align: center;
+        }
+        .pricing-notice h3 { color: #feca57; margin-bottom: 10px; font-size: 1.4em; }
+        .pricing-notice p { color: #aaa; font-size: 1.1em; }
+        .pricing-notice .btn { 
+            margin-top: 20px; 
+            background: linear-gradient(90deg, #ff6b6b, #ee5a5a); 
+            color: white;
+        }
         
-        /* FAQ */
-        .faq-section { padding: 80px 0; }
-        .faq-section h2 { text-align: center; font-size: 2.5em; margin-bottom: 50px; }
-        .faq-item {
+        /* Process Section */
+        .process-section { 
+            background: rgba(0,0,0,0.3); 
+            padding: 100px 20px;
+        }
+        .process-container { max-width: 1200px; margin: 0 auto; }
+        .process-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #feca57, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .process-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: white;
+            margin: 0 auto 20px;
+        }
+        .step h3 { color: #feca57; margin-bottom: 15px; font-size: 1.4em; }
+        .step p { color: #aaa; line-height: 1.6; }
+        
+        /* Industries */
+        .industries-section { 
+            padding: 100px 20px; 
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+        .industry-card {
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 12px;
             padding: 30px;
-            margin-bottom: 20px;
+            text-align: center;
+            transition: all 0.3s;
         }
-        .faq-item h3 { color: #ff6b6b; margin-bottom: 15px; font-size: 1.4em; }
-        .faq-item p { color: #aaa; line-height: 1.8; }
-        
-        /* Testimonials */
-        .testimonials-section { padding: 80px 0; background: rgba(0,0,0,0.2); }
-        .testimonials-section h2 { text-align: center; font-size: 2.5em; margin-bottom: 50px; }
-        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-        .testimonial {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            padding: 35px;
-            border-radius: 15px;
+        .industry-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,107,107,0.3);
+            transform: translateY(-5px);
         }
-        .testimonial p { font-style: italic; color: #ccc; margin-bottom: 20px; line-height: 1.8; }
-        .testimonial .author { color: #888; font-style: normal; }
-        .testimonial .author strong { color: #feca57; }
+        .industry-icon { font-size: 3em; margin-bottom: 15px; }
+        .industry-card h3 { color: #ff6b6b; margin-bottom: 10px; }
+        .industry-card p { color: #888; font-size: 0.95em; }
         
         /* CTA Banner */
         .cta-banner {
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
-            padding: 80px 0;
+            padding: 80px 20px;
             text-align: center;
-            margin-top: 50px;
         }
-        .cta-banner h2 { font-size: 2.5em; margin-bottom: 20px; color: white; }
-        .cta-banner p { font-size: 1.2em; margin-bottom: 40px; color: rgba(255,255,255,0.9); }
-        .cta-banner .btn { background: white; color: #ff6b6b; margin: 0 10px; }
+        .cta-banner h2 { 
+            font-size: 2.8em; 
+            margin-bottom: 20px; 
+            color: white;
+        }
+        .cta-banner p { 
+            font-size: 1.3em; 
+            margin-bottom: 40px; 
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-banner .btn { 
+            background: white; 
+            color: #ff6b6b; 
+            font-size: 1.2em;
+            padding: 18px 50px;
+        }
         
         /* Footer */
-        footer { background: #0a0a0a; padding: 60px 0 30px; text-align: center; color: #666; }
-        .social-links { margin-bottom: 30px; }
-        .social-links a { color: #aaa; margin: 0 15px; text-decoration: none; font-size: 1.2em; }
+        footer { 
+            background: #0a0a0a; 
+            padding: 60px 20px 30px; 
+            text-align: center; 
+            color: #666;
+        }
+        .social-links { 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .social-links a { 
+            color: #aaa; 
+            text-decoration: none; 
+            font-size: 1.3em;
+            transition: color 0.3s;
+        }
         .social-links a:hover { color: #ff6b6b; }
         
         /* Mobile */
         @media (max-width: 768px) {
-            .page-hero h1 { font-size: 2em; }
-            .service-header { flex-direction: column; }
-            .service-price { text-align: left; }
-            .service-item { padding: 30px; }
-            nav ul { gap: 15px; }
-            nav .cta-btn { padding: 8px 15px; }
+            .page-hero h1 { font-size: 2.5em; }
+            .services-grid { grid-template-columns: 1fr; }
+            .service-card { padding: 30px; }
+            .process-steps { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -166,11 +358,11 @@
     
     <nav>
         <div class="container">
-            <div class="logo"><a href="index.html">Bowalka</a></div>
+            <div class="logo"><a href="index.html">Bowalka Designs</a></div>
             <ul>
-                <li><a href="index.html#services">Home</a></li>
-                <li><a href="index.html#why">About</a></li>
-                <li><a href="index.html#contact" class="cta-btn">Contact</a></li>
+                <li><a href="design.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="quote.html" class="cta-btn">Get a Quote</a></li>
             </ul>
         </div>
     </nav>
@@ -178,317 +370,251 @@
     <section class="page-hero">
         <div class="container">
             <h1>Services</h1>
-            <p>AI compliance. Prompt engineering. Edge-AI architecture.<br>Delivered in 24-72 hours. No fluff.</p>
+            <p>Professional graphic design, video production, and AI prompt engineering<br>Tailored solutions for your brand's unique needs</p>
         </div>
     </section>
     
     <section class="services-section">
-        <div class="container">
+        <div class="services-grid">
             <!-- Service 1 -->
-            <div class="service-item">
-                <div class="service-header">
-                    <div class="service-title">
-                        <h2>AI Compliance Audit</h2>
-                        <p class="subtitle">Find your regulatory gaps before the fines hit</p>
-                    </div>
-                    <div class="service-price">
-                        <div class="amount">$297</div>
-                        <div class="period">Delivered in 24 hours</div>
-                    </div>
-                </div>
+            <div class="service-card featured">
+                <div class="badge">Popular</div>
+                <div class="service-icon">🎬</div>
+                <h2>Commercial Video Production</h2>
+                <p class="subtitle"> High-impact commercials that capture attention and drive action</p>
                 <div class="service-details">
-                    <div class="detail-block">
-                        <h3>What You Get</h3>
-                        <ul>
-                            <li>EU AI Act risk classification</li>
-                            <li>GDPR data flow analysis</li>
-                            <li>CCPA/state privacy law audit</li>
-                            <li>Gap report with prioritized fixes</li>
-                            <li>Documentation templates</li>
-                            <li>30-min walkthrough call</li>
-                        </ul>
-                    </div>
-                    <div class="detail-block">
-                        <h3>Perfect For</h3>
-                        <ul>
-                            <li>SaaS founders</li>
-                            <li>Startup CTOs</li>
-                            <li>Marketing agencies</li>
-                            <li>Healthcare tech</li>
-                            <li>Any company using AI</li>
-                        </ul>
-                    </div>
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li>Concept development & storyboarding</li>
+                        <li>Professional motion graphics (After Effects)</li>
+                        <li>Video editing & post-production</li>
+                        <li>Music & sound design</li>
+                        <li>Multiple formats (TV, web, social)</li>
+                        <li>2 rounds of revisions</li>
+                        <li>Full commercial rights</li>
+                    </ul>
                 </div>
                 <div class="service-cta">
-                    <a href="https://venmo.com/u/your-venmo-username" target="_blank" class="btn btn-primary">Pay via Venmo - $297</a>
-                    <a href="mailto:bowa@proton.me?subject=AI%20Compliance%20Audit%20Invoice" class="btn btn-secondary">Request Invoice</a>
+                    <a href="quote.html" class="btn btn-primary">Request Quote</a>
+                    <a href="design.html" class="btn btn-secondary">View Examples</a>
                 </div>
             </div>
             
-            <!-- Service 2 (Featured) -->
-            <div class="service-item featured">
-                <div class="service-header">
-                    <div class="service-title">
-                        <h2>Prompt Engineering Package</h2>
-                        <p class="subtitle">Production-grade prompts with guardrails</p>
-                    </div>
-                    <div class="service-price">
-                        <div class="amount">$897</div>
-                        <div class="period">Delivered in 72 hours</div>
-                    </div>
-                </div>
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h2>Social Media Advertising</h2>
+                <p class="subtitle"> Scroll-stopping content for Instagram, TikTok, Facebook & LinkedIn</p>
                 <div class="service-details">
-                    <div class="detail-block">
-                        <h3>What You Get</h3>
-                        <ul>
-                            <li>10 custom prompt templates</li>
-                            <li>Jailbreak protection layer</li>
-                            <li>Structured output (JSON/Pydantic)</li>
-                            <li>50+ edge case test suite</li>
-                            <li>Performance benchmarks</li>
-                            <li>Team documentation deck</li>
-                            <li>Compliance mapping for EU AI Act</li>
-                            <li>2 weeks email support</li>
-                        </ul>
-                    </div>
-                    <div class="detail-block">
-                        <h3>Perfect For</h3>
-                        <ul>
-                            <li>Marketing teams</li>
-                            <li>Customer service</li>
-                            <li>QA/Testing departments</li>
-                            <li>Content creation workflows</li>
-                            <li>Internal AI tools</li>
-                        </ul>
-                    </div>
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li>Platform-optimized ad creatives</li>
+                        <li>A/B testing variations (3-5 versions)</li>
+                        <li>Animated & static designs</li>
+                        <li>Brand-consistent templates</li>
+                        <li>Campaign strategy consultation</li>
+                        <li>Performance tracking setup</li>
+                        <li>Monthly content calendar</li>
+                    </ul>
                 </div>
                 <div class="service-cta">
-                    <a href="https://venmo.com/u/your-venmo-username" target="_blank" class="btn btn-primary">Pay via Venmo - $897</a>
-                    <a href="mailto:bowa@proton.me?subject=Prompt%20Engineering%20Package%20Invoice" class="btn btn-outline">Discuss Custom Needs</a>
+                    <a href="quote.html" class="btn btn-primary">Request Quote</a>
+                    <a href="design.html" class="btn btn-outline">See Portfolio</a>
                 </div>
             </div>
             
             <!-- Service 3 -->
-            <div class="service-item">
-                <div class="service-header">
-                    <div class="service-title">
-                        <h2>Edge-AI Architecture</h2>
-                        <p class="subtitle">Full on-prem deployment strategy</p>
-                    </div>
-                    <div class="service-price">
-                        <div class="amount">$2,497</div>
-                        <div class="period">Delivered in 5 days</div>
-                    </div>
-                </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h2>Brand Identity Design</h2>
+                <p class="subtitle"> Complete visual systems that tell your story</p>
                 <div class="service-details">
-                    <div class="detail-block">
-                        <h3>What You Get</h3>
-                        <ul>
-                            <li>Cloud cost assessment & savings plan</li>
-                            <li>Edge hardware recommendations</li>
-                            <li>ONNX/TFLite model pipeline design</li>
-                            <li>Privacy-first architecture diagram</li>
-                            <li>Vendor evaluation matrix</li>
-                            <li>Migration roadmap (30/60/90 days)</li>
-                            <li>Implementation documentation</li>
-                            <li>2 weeks post-launch support</li>
-                        </ul>
-                    </div>
-                    <div class="detail-block">
-                        <h3>Perfect For</h3>
-                        <ul>
-                            <li>Healthcare organizations</li>
-                            <li>Financial services</li>
-                            <li>Enterprise teams</li>
-                            <li>Regulated industries</li>
-                            <li>Companies with data sovereignty needs</li>
-                        </ul>
-                    </div>
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li>Logo design (concept variations)</li>
+                        <li>Color palette & typography</li>
+                        <li>Brand guidelines document</li>
+                        <li>Business card & stationery</li>
+                        <li>Social media templates</li>
+                        <li>Brand asset library</li>
+                        <li>30-day support & minor revisions</li>
+                    </ul>
                 </div>
                 <div class="service-cta">
-                    <a href="https://venmo.com/u/your-venmo-username" target="_blank" class="btn btn-primary">Pay via Venmo - $2,497</a>
-                    <a href="mailto:bowa@proton.me?subject=Edge-AI%20Architecture%20Consultation" class="btn btn-secondary">Schedule Call</a>
+                    <a href="quote.html" class="btn btn-primary">Request Quote</a>
+                    <a href="design.html" class="btn btn-secondary">View Cases</a>
+                </div>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h2>AI Prompt Engineering</h2>
+                <p class="subtitle"> Production-ready prompts with safety guardrails</p>
+                <div class="service-details">
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li>Custom prompt templates (5-10)</li>
+                        <li>Jailbreak protection layer</li>
+                        <li>Structured output formatting</li>
+                        <li>Edge case test suite (30+ scenarios)</li>
+                        <li>Performance benchmarks</li>
+                        <li>Team documentation</li>
+                        <li>14 days email support</li>
+                    </ul>
+                </div>
+                <div class="service-cta">
+                    <a href="quote.html" class="btn btn-primary">Request Quote</a>
+                    <a href="design.html" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- Service 5 -->
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h2>Infographic & Data Viz</h2>
+                <p class="subtitle"> Complex information made visually compelling</p>
+                <div class="service-details">
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li>Data analysis & storytelling</li>
+                        <li>Custom illustrations (Illustrator)</li>
+                        <li>Interactive elements (optional)</li>
+                        <li>Multiple format exports</li>
+                        <li>Print-ready files</li>
+                        <li>Web-optimized versions</li>
+                        <li>Source files included</li>
+                    </ul>
+                </div>
+                <div class="service-cta">
+                    <a href="quote.html" class="btn btn-primary">Request Quote</a>
+                    <a href="design.html" class="btn btn-secondary">See Work</a>
+                </div>
+            </div>
+            
+            <!-- Service 6 -->
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h2>Hype Creation & Campaigns</h2>
+                <p class="subtitle"> Launch strategies that build excitement</p>
+                <div class="service-details">
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li>Campaign concept & messaging</li>
+                        <li>Multi-channel content suite</li>
+                        <li>Teaser & reveal assets</li>
+                        <li>Influencer collaboration materials</li>
+                        <li>Event graphics & signage</li>
+                        <li>Press kit design</li>
+                        <li>Launch timeline strategy</li>
+                    </ul>
+                </div>
+                <div class="service-cta">
+                    <a href="quote.html" class="btn btn-primary">Request Quote</a>
+                    <a href="design.html" class="btn btn-outline">Explore</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pricing-notice">
+            <h3>Pricing Available Upon Request</h3>
+            <p>Every project is unique. Contact us for a custom quote tailored to your needs, timeline, and budget.</p>
+            <a href="quote.html" class="btn">Get Your Free Quote</a>
+        </div>
+    </section>
+    
+    <section class="process-section">
+        <div class="process-container">
+            <h2 class="process-title">How We Work</h2>
+            <p class="process-subtitle">A streamlined process from concept to delivery</p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Discovery Call</h3>
+                    <p>We discuss your goals, audience, and vision. 15-30 min no-obligation conversation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Proposal & Quote</h3>
+                    <p>Receive a detailed scope, timeline, and investment. Approve to move forward.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Design & Development</h3>
+                    <p>Regular check-ins and progress updates. Your input shapes the final product.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Delivery & Support</h3>
+                    <p>Final files, source assets, and ongoing support to ensure success.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="comparison-section">
-        <div class="container">
-            <h2>Service Comparison</h2>
-            <div class="comparison-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Compliance Audit</th>
-                            <th>Prompt Engineering</th>
-                            <th>Edge-AI Architecture</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Price</td>
-                            <td>$297</td>
-                            <td>$897</td>
-                            <td>$2,497</td>
-                        </tr>
-                        <tr>
-                            <td>Delivery Time</td>
-                            <td>24 hours</td>
-                            <td>72 hours</td>
-                            <td>5 days</td>
-                        </tr>
-                        <tr>
-                            <td>Gap Analysis</td>
-                            <td><span class="check">✓</span></td>
-                            <td><span class="check">✓</span></td>
-                            <td><span class="cross">-</span></td>
-                        </tr>
-                        <tr>
-                            <td>Prompt Templates</td>
-                            <td><span class="cross">-</span></td>
-                            <td><span class="check">10</span></td>
-                            <td><span class="cross">-</span></td>
-                        </tr>
-                        <tr>
-                            <td>Test Suite</td>
-                            <td><span class="cross">-</span></td>
-                            <td><span class="check">50+ cases</span></td>
-                            <td><span class="check">✓</span></td>
-                        </tr>
-                        <tr>
-                            <td>Architecture Diagram</td>
-                            <td><span class="cross">-</span></td>
-                            <td><span class="cross">-</span></td>
-                            <td><span class="check">✓</span></td>
-                        </tr>
-                        <tr>
-                            <td>Walkthrough Call</td>
-                            <td><span class="check">30 min</span></td>
-                            <td><span class="check">60 min</span></td>
-                            <td><span class="check">120 min</span></td>
-                        </tr>
-                        <tr>
-                            <td>Post-Delivery Support</td>
-                            <td><span class="cross">-</span></td>
-                            <td><span class="check">2 weeks</span></td>
-                            <td><span class="check">2 weeks</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+    <section class="industries-section">
+        <h2 class="process-title" style="text-align: center;">Industries We Serve</h2>
+        <div class="industries-grid">
+            <div class="industry-card">
+                <div class="industry-icon">💻</div>
+                <h3>Tech & SaaS</h3>
+                <p>Product launches, demos, brand systems</p>
+            </div>
+            <div class="industry-card">
+                <div class="industry-icon">🏥</div>
+                <h3>Healthcare</h3>
+                <p>Patient education, branding, comms</p>
+            </div>
+            <div class="industry-card">
+                <div class="industry-icon">🛍️</div>
+                <h3>Retail & E-comm</h3>
+                <p>Ads, packaging, social campaigns</p>
+            </div>
+            <div class="industry-card">
+                <div class="industry-icon">🎓</div>
+                <h3>Education</h3>
+                <p>Course materials, infographics</p>
+            </div>
+            <div class="industry-card">
+                <div class="industry-icon">🎵</div>
+                <h3>Entertainment</h3>
+                <p>Trailers, posters, social content</p>
+            </div>
+            <div class="industry-card">
+                <div class="industry-icon">🏢</div>
+                <h3>Enterprise</h3>
+                <p>Internal comms, presentations</p>
             </div>
         </div>
     </section>
     
-    <section class="testimonials-section">
+    <section class="cta-banner">
         <div class="container">
-            <h2>What Clients Say</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial">
-                    <p>"Bowalka caught compliance gaps our lawyers missed. Delivered in 48h. Worth every penny. We avoided a potentially massive GDPR fine."</p>
-                    <div class="author"><strong>Sarah K.</strong> — Healthtech Founder (Series A)</div>
-                </div>
-                <div class="testimonial">
-                    <p>"We cut our AI costs 65% by moving to on-prem. My CFO stopped crying. My CTO stopped panicking. The migration plan was flawless."</p>
-                    <div class="author"><strong>Marcus R.</strong> — Fintech CTO</div>
-                </div>
-                <div class="testimonial">
-                    <p>"Prompts that actually work. Guardrails that don't break customer flows. This is code, not magic. Our support tickets dropped 40%."</p>
-                    <div class="author"><strong>Jennifer L.</strong> — Marketing Director</div>
-                </div>
-                <div class="testimonial">
-                    <p>"As a stroke survivor building privacy-first AI, Bowalka understands that tech should heal, not extract. That philosophy shows in the work."</p>
-                    <div class="author"><strong>David P.</strong> — Privacy Advocate / NGO Director</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="faq-section">
-        <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3>How fast can you start?</h3>
-                <p>Immediately. I typically have 2-3 client slots open per week. Once we scope your needs (15-min call), I can begin same-day or within 24 hours.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Do you offer custom packages?</h3>
-                <p>Yes. If your needs don't fit the three tiers above, message me. I'll tailor a scope and price. Common customizations: additional prompt templates, extended support, multi-tenant architecture.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What's your payment policy?</h3>
-                <p>50% upfront, 50% on delivery. For packages under $500, full payment upfront. For enterprise contracts ($5k+), net-30 terms available after contract signing. I accept crypto, bank transfer, or Upwork/Fiverr escrow.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Can you work with our legal team?</h3>
-                <p>Absolutely. I document everything in a format your legal/compliance team can use for audits. I'm happy to jump on calls with them to explain technical decisions.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Do you offer ongoing retainer contracts?</h3>
-                <p>Yes. Monthly retainers start at $3,000/month and include ongoing prompt maintenance, compliance updates, and priority SLA. Perfect for companies with active AI deployments.</p>
-            </div>
-        </div>
-    </section>
-    
-    <div class="cta-banner">
-        <div class="container">
-            <h2>Ready to Survive the AI Revolution?</h2>
-            <p>No sales pitch. Just a 15-min conversation about your actual problems.</p>
-            <div>
-                <a href="index.html#contact" class="btn">Get Started</a>
-                <a href="https://github.com/BoWalka" class="btn btn-secondary">View GitHub</a>
-            </div>
-        </div>
-    </div>
-    
-    <section class="payment-info" style="padding: 60px 0; background: rgba(0,0,0,0.3);">
-        <div class="container" style="text-align: center; max-width: 800px;">
-            <h2 style="color: #feca57;">Venmo Payment Terms</h2>
-            <div style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; margin-top: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                <h3 style="color: #00d2d3; margin-bottom: 15px;">How It Works</h3>
-                <ol style="text-align: left; color: #aaa; line-height: 2;">
-                    <li><strong>Click "Pay via Venmo"</strong> on your chosen service</li>
-                    <li><strong>Send exact amount</strong> ($297, $897, or $2,497)</li>
-                    <li><strong>Note: Business or Personal?</strong> Use "Friends & Family" for now</li>
-                    <li><strong>Add memo</strong>: "AI Consult - [Your Name]"</li>
-                    <li><strong>Confirmation</strong>: I'll email delivery within 24-72h</li>
-                </ol>
-                <p style="margin-top: 20px; color: #ff6b6b; font-size: 0.9em;"><strong>⚠️ Important:</strong> Venmo limits apply. For amounts over $10k, contact me for alternative payment methods (crypto, wire).</p>
-            </div>
-            <div style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; margin-top: 30px;">
-                <h3 style="color: #00d2d3; margin-bottom: 15px;">Invoice Only</h3>
-                <p style="color: #aaa;">Prefer not to use Venmo? Email me for a formal invoice. I can accept:</p>
-                <ul style="text-align: left; color: #aaa; margin-top: 15px;">
-                    <li>Bank wire transfer</li>
-                    <li>ACH (US only)</li>
-                    <li>Crypto (USDC, ETH, BTC)</li>
-                    <li>Check (US businesses)</li>
-                </ul>
-            </div>
-            <p style="margin-top: 30px; color: #888; font-size: 0.9em;">No platform fees. No middlemen. Direct support for independent AI consultants.</p>
+            <h2>Ready to Start Your Project?</h2>
+            <p>Tell us about your needs and we'll provide a custom quote within 24 hours.</p>
+            <a href="quote.html" class="btn">Get Your Free Quote</a>
         </div>
     </section>
     
     <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="https://github.com/BoWalka">GitHub</a>
-                <a href="mailto:bowa@proton.me">Email</a>
-                <a href="https://linkedin.com/in/your-profile">LinkedIn</a>
-            </div>
-            <p>&copy; 2026 Bowalka. Built with open-source. No surveillance. No tracking.</p>
+        <div class="social-links">
+            <a href="https://github.com/BoWalka" target="_blank">GitHub</a>
+            <a href="mailto:bowa@proton.me">Email</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Portfolio</a>
         </div>
+        <p>&copy; 2026 Bowalka Designs. All rights reserved.<br>Open for Business | Privacy-First | Local-Only AI</p>
     </footer>
     
+    <script src="matrix.js"></script>
     <script>
-        // Lightweight matrix effect for services page
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         
-        const chars = 'アイウエオ 0123456789AZ';
+        const chars = 'Bowalka Designs 🎨🎬📱🤖 0123456789AZ';
         const charsArray = chars.split('');
         const fontSize = 12;
         const columns = canvas.width / fontSize;
@@ -496,18 +622,24 @@
         for (let i = 0; i < columns; i++) drops[i] = 1;
         
         function draw() {
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.03)';
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.04)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00ff41';
+            
+            ctx.fillStyle = '#ff6b6b';
             ctx.font = fontSize + 'px monospace';
+            
             for (let i = 0; i < drops.length; i++) {
                 const text = charsArray[Math.floor(Math.random() * charsArray.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) drops[i] = 0;
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
                 drops[i]++;
             }
         }
-        setInterval(draw, 50);
+        
+        setInterval(draw, 35);
         
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
